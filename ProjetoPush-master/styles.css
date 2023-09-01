@@ -1,0 +1,149 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #00783E;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+main {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+h1 {
+    margin: 0;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+footer {
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 10px;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para o cabeçalho h1 */
+h1 {
+    background-color: #00783E;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Estilos para o conteúdo do resumo */
+#resumo-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+#filtros {
+    text-align: center; /* Centraliza os elementos filhos horizontalmente */
+    max-width: 800px; /* Define uma largura máxima para a seção */
+    margin: 0 auto; /* Centraliza a seção horizontalmente na página */
+}
+
+/* Estilos adicionais para os botões */
+button {
+    margin: 5px; /* Espaçamento entre os botões */
+}
+/* Estilos para a parte do filtro */
+#filtros {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+#filtros h2 {
+    margin: 0;
+    text-align: center;
+    color: #00783E;
+}
+
+#filtros label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #00783E;
+}
+
+#filtros input[type="text"],
+#filtros input[type="date"] {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#filtros .botoes-filtro {
+    text-align: center;
+}
+
+#filtros button {
+    background-color: #00783E;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.filtro-data {
+    display: flex;
+    justify-content: space-between;
+}
+
+.filtro-data-item {
+    text-align: center; /* Alinhar o texto ao centro horizontalmente */
+    flex: 1; /* Distribuir o espaço igualmente entre os campos de data */
+}
+
+.filtro-data-item label {
+    display: block; /* Fazer com que a etiqueta seja exibida como um bloco (acima do campo de data) */
+    margin-bottom: 2px; /* Espaçamento inferior menor entre o nome da data e o campo de data */
+}
+.main-container {
+    display: flex;
+}
+
+.main {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ccc;
+}

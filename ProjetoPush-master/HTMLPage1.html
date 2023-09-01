@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Sistema Push de Atualizações - Câmara dos Deputados</title>
+</head>
+<body>
+    <header>
+        <h1>Câmara Push- Acompanhe as falas de seus Representantes</h1>
+    </header>
+    <Main>
+
+        <section id="filtros">
+            <h2>Filtros</h2>
+            <label for="filtroOrador">Nome do Orador:</label>
+            <input type="text" id="filtroOrador" class="input-field">
+
+            <label for="filtroAssunto">Assunto Tratado:</label>
+            <input type="text" id="filtroAssunto" class="input-field">
+
+            <div class="filtro-data">
+                <div class="filtro-data-item">
+                    <label for="filtroDataInicio">Data de Início:</label>
+                    <input type="date" id="filtroDataInicio" class="input-field">
+                </div>
+                <div class="filtro-data-item">
+                    <label for="filtroDataFim">Data de Fim:</label>
+                    <input type="date" id="filtroDataFim" class="input-field">
+                </div>
+            </div>
+
+            <div class="botoes-filtro">
+                <button onclick="aplicarFiltros()" class="button">Aplicar Filtro</button>
+                <button onclick="salvarFiltros()" class="button">Salvar Filtro</button>
+            </div>
+        </section>
+    
+
+        <Main>
+           <section id="sumario">
+            <h2>Filtros Cadastrados</h2>
+            <ul id="resumos">
+                <!-- Aqui, os resumos dos discursos e debates seriam dinamicamente preenchidos por JavaScript -->
+            </ul>
+        </section> 
+        </Main>
+        
+    </Main>
+        
+        
+    
+    <footer>
+        <p>&copy; 2023 Câmara dos Deputados</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

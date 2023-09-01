@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #00783E;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+header {
+    background-color: #00783E;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Conteúdo principal */
+main {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+h1 {
+    margin: 0;
+    text-align: center;
+    color: #eff1f0;
+}
+/* Título */
+h2 {
+    margin: 0;
+    text-align: center;
+    color: #00783E;
+}
+
+/* Formulário */
+form {
+    margin-top: 20px;
+    text-align: center; /* Centraliza o conteúdo do formulário */
+    max-width: 300px; /* Define a largura máxima do formulário */
+    margin-left: auto; /* Centraliza horizontalmente o formulário */
+    margin-right: auto; /* Centraliza horizontalmente o formulário */
+}
+
+/* Rótulos dos campos de entrada */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #00783E;
+}
+
+/* Campos de entrada de texto */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 10px;
+}
+
+/* Botão de login */
+button[type="submit"] {
+    background-color: #00783E;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Mensagem de erro */
+#login-message {
+    color: #FF0000;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Rodapé */
+footer {
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 5px;
+    margin-top: 20px;
+}
+
+    </style>
+</head>
+<header>
+    <h1>Câmara Push- Acompanhe as falas de seus Representantes</h1>
+</header>
+<body>
+    <div class="login">
+        <main> 
+            <h2>Login</h2>
+                <form id="login-form">
+                    <label for="username">Usuário:</label>
+                    <input type="text" id="username" name="username" required><br>
+
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password" required><br>
+
+                    <button type="submit">Entrar</button>
+                </form>  
+        </main> 
+    </div>
+    <div class="signup">
+        <main>
+            <p>Não tem uma conta? <a href="cadastro.html">Cadastrar Novo Usuário</a></p>
+        </main>
+        
+    </div>
+    
+
+    <div id="login-message"></div>
+
+    <script>
+        // Função para lidar com o envio do formulário de login
+        document.getElementById("login-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Substitua a lógica abaixo pela autenticação real (por exemplo, verificar usuário/senha em um servidor)
+            if (username === "root" && password === "root") {
+                // Login bem-sucedido
+                document.getElementById("login-message").textContent = "Login bem-sucedido. Redirecionando...";
+                setTimeout(function() {
+                    window.location.href = "HTMLPage1.html"; // Redirecionar para a página  após o login
+                }, 2000); // Redirecionar após 2 segundos (pode ajustar esse valor)
+            } else {
+                // Login falhou
+                document.getElementById("login-message").textContent = "Usuário ou senha incorretos. Tente novamente.";
+            }
+        });
+    </script>
+    <footer>
+        <p>&copy; 2023 Câmara dos Deputados</p>
+    </footer>
+</body>
+</html>
