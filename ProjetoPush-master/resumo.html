@@ -1,44 +1,68 @@
-﻿<!-- resumo.html -->
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Detalhes do Discurso</title>
+    <title>Seleção de Temas</title>
 </head>
 <body>
-    <header>
-        <h1>Sistema Push</h1>
-    </header>
-    <main>
-        <section id="detalhes">
-            <h2>Detalhes do Discurso</h2>
-            <div id="discurso-content">
-                <h3>Autor do Discurso:</h3>
-                <p id="autor"></p>
+    <h1>Escolha os Temas:</h1>
+    
+    <div id="temas-container">
+        <label>
+            <input type="checkbox" name="temas" value="tema1"> Tema 1
+        </label>
+        <label>
+            <input type="checkbox" name="temas" value="tema2"> Tema 2
+        </label>
+        <label>
+            <input type="checkbox" name="temas" value="tema3"> Tema 3
+        </label>
+        <!-- Adicione mais opções de temas conforme necessário -->
+    </div>
 
-                <h3>Data do Discurso:</h3>
-                <p id="data"></p>
+    <button onclick="adicionarTema()">Adicionar Tema</button>
+    <button onclick="salvarFiltro()">Salvar Filtro</button>
 
-                <h3>Tema do Discurso:</h3>
-                <p id="tema"></p>
+    <script>
+        function adicionarTema() {
+            const temasContainer = document.getElementById("temas-container");
+            const temasSelecionados = [];
 
-                <h3>Resumo do Discurso:</h3>
-                <p id="resumo"></p>
-                <!-- Os detalhes do discurso serão preenchidos dinamicamente pelo JavaScript -->
-                <form action="http://google.com">
-                    <input type="submit" value="ir para google" />
-                </form>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2023 Câmara dos Deputados</p>
-    </footer>
+            // Percorra todos os checkboxes dentro do container
+            const checkboxes = temasContainer.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach((checkbox) => {
+                if (checkbox.checked) {
+                    temasSelecionados.push(checkbox.value);
+                }
+            });
 
-    <script src="script.js"></script>
+            // Limpe o container antes de recriar os checkboxes selecionados
+            temasContainer.innerHTML = "";
+
+            // Recrie os checkboxes selecionados no container
+            temasSelecionados.forEach((tema) => {
+                const label = document.createElement("label");
+                label.innerHTML = `<input type="checkbox" name="temas" value="${tema}" checked> ${tema}`;
+                temasContainer.appendChild(label);
+            });
+        }
+
+        function salvarFiltro() {
+            const temasContainer = document.getElementById("temas-container");
+            const temasSelecionados = [];
+
+            // Percorra todos os checkboxes dentro do container
+            const checkboxes = temasContainer.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach((checkbox) => {
+                if (checkbox.checked) {
+                    temasSelecionados.push(checkbox.value);
+                }
+            });
+
+            // Você pode fazer algo com a lista de temas selecionados, como enviar para o servidor ou processar localmente.
+            console.log("Temas Selecionados:", temasSelecionados);
+        }
+    </script>
 </body>
 </html>
-
-

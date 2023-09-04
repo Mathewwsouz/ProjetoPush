@@ -51,9 +51,9 @@ body {
 
 /* Estilos para o cabeçalho h1 */
 h1 {
-    background-color: #00783E;
+    background-color: #285228;
     color: #fff;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
 }
 
@@ -146,4 +146,39 @@ button {
     flex: 1;
     padding: 20px;
     border: 1px solid #ccc;
+}
+.imagem-estilizada {
+    width: 0px; /* Largura da imagem */
+    height: auto; /* Altura ajustável para manter a proporção original */
+    border: 0px solid #333; /* Borda da imagem */
+    border-radius: 10px; /* Cantos arredondados */
+    margin: 10px; /* Margem ao redor da imagem */
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* Sombra */
+}
+.cabecalho-inferior {
+    background-color: #285228; /* Verde escuro, você pode ajustar essa cor conforme desejado */
+    color: white; /* Cor do texto no cabeçalho inferior */
+    padding: 10px; /* Espaçamento interno para o cabeçalho */
+    text-align: center; /* Alinhamento de texto ao centro */
+}
+/* Estilos para o texto */
+.texto {
+     /* Ocupa todo o espaço disponível restante */
+    font-size: 12px;
+    font-weight: normal;
+}
+
+/* Estilos para a caixa de pesquisa */
+.caixa-pesquisa {
+    display: flex;
+    align-items: center;
+}
+
+.caixa-pesquisa input[type="text"] {
+    padding-right: 30px; /* Espaço para o ícone */
+}
+
+.caixa-pesquisa i {
+    position: absolute;
+    right: 30PX; /* Posição do ícone */
 }

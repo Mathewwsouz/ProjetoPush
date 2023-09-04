@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sistema de Notificação de Discursos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilizando a lista de opções */
+        .multi-select-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+    
+        /* Estilizando cada item da lista */
+        .multi-select-list-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+    
+        /* Estilizando o rótulo da opção */
+        .multi-select-label {
+            margin-left: 10px;
+        }
+    
+        /* Estilizando a caixa de seleção oculta */
+        .multi-select-checkbox {
+            display: none;
+        }
+    
+        /* Estilizando a caixa de seleção personalizada */
+        .multi-select-custom-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #333;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+    
+        /* Estilizando o ícone de marcação (✓) */
+        .multi-select-icon {
+            font-size: 16px;
+            color: #333;
+            display: none;
+        }
+    
+        /* Quando a caixa de seleção estiver marcada, mostre o ícone */
+        .multi-select-checkbox:checked + .multi-select-custom-checkbox .multi-select-icon {
+            display: block;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #00783E;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        main {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* Estilos para a parte do filtro */
+        #filtro-form-notificacoes {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        #filtro-form-notificacoes h2 {
+            margin: 0;
+            text-align: center;
+            color: #00783E;
+        }
+
+        #filtro-form-notificacoes label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #00783E;
+        }
+
+        #filtro-form-notificacoes input[type="text"],
+        #filtro-form-notificacoes input[type="date"],
+        #filtro-form-notificacoes select {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #filtro-form-notificacoes .botoes-filtro {
+            text-align: center;
+        }
+
+        #filtro-form-notificacoes button {
+            background-color: #00783E;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #filtro-cadastrado {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        #filtro-cadastrado h2 {
+            margin: 0;
+            text-align: center;
+            color: #00783E;
+        }
+
+        #filtros-cadastrados {
+            list-style: none;
+            padding: 0;
+        }
+
+        #filtros-cadastrados li {
+            margin-bottom: 10px;
+        }
+        .caixa-pesquisa {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* Alinhar no canto direito */
+            padding-right: 20px; /* Adicione algum espaço à direita */
+            background-color: #00783E;
+            color: white;
+            height: 60px; /* Ajuste a altura conforme necessário */
+        }
+
+        .caixa-pesquisa input[type="text"] {
+            width: 200px; /* Largura da caixa de pesquisa */
+            padding: 10px;
+            margin-left: 10px; /* Adicione algum espaço à esquerda */
+        }
+
+        .caixa-pesquisa i {
+            position: absolute;
+            right: 10px; /* Posição do ícone à direita */
+        }
+
+        .texto-centralizado {
+            font-size: 14px; /* Tamanho da fonte do texto (ajustado) */
+            margin-right: 10px; /* Adicione espaço à direita do texto */
+        }
+
+
+
+        .imagem-estilizada {
+            width: 0px; /* Largura da imagem */
+            height: auto; /* Altura ajustável para manter a proporção original */
+            border: 0px solid #333; /* Borda da imagem */
+            border-radius: 10px; /* Cantos arredondados */
+            margin: 10px; /* Margem ao redor da imagem */
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* Sombra */
+        }
+        /* Estilos para os ícones de redes sociais */
+        .social-icon {
+            font-size: 24px; /* Tamanho do ícone */
+            margin-right: 10px; /* Espaçamento entre os ícones */
+            color: #eaf3ee; /* Cor dos ícones */
+            text-decoration: none; /* Remova sublinhado dos links */
+        }
+
+        /* Quando o mouse passa sobre os ícones */
+        .social-icon:hover {
+            color: #eee7e6; /* Cor alterada no hover */
+        }
+
+        /* Estilo para a seção de Filtros Cadastrados */
+#filtros-cadastrados {
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+#filtros-cadastrados h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#filtros-salvos {
+    list-style: none;
+    padding: 0;
+}
+
+#filtros-salvos li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+#filtros-salvos li:last-child {
+    margin-bottom: 0;
+}
+
+/* Adicione qualquer estilo adicional conforme necessário */
+
+
+    
+    </style>
+    
+    
+</head>
+<body>
+    <header style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="imagem-estilizada">
+            <img src="C:\Users\Mateus\Desktop\ProjetoPush-master 01-09\ProjetoPush-master\ProjetoPush-master\camara-dos-deputados-logo.png" alt="Descrição da imagem" width="200" height="auto">
+        </div>
+        <div class="redes-sociais">
+            <a href="https://www.facebook.com/suapagina" target="_blank" class="social-icon"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.twitter.com/suapagina" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/suapagina" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+        </div>
+    </header>
+    
+    <header class="cabecalho-inferior">
+        <div class="texto-centralizado">
+            <a href="#" style="color: white;">Assuntos</a> | <a href="#" style="color: white;">Institucional</a> | <a href="#" style="color: white;">Deputados</a> | <a href="#" style="color: white;">Atividade Legislativa</a> | <a href="#" style="color: white;">Comunicação</a> | <a href="#" style="color: white;">Transparência e prestação de contas</a>
+        </div>
+        <div class="caixa-pesquisa">
+            <input type="text" placeholder="Pesquisar">
+            <i class="fas fa-search"></i> <!-- Ícone de lupa do FontAwesome -->
+        </div>
+    </header>
+    
+    <!-- Seção para o assunto da notificação -->
+    <main id="notificacoes">
+        <h2>Notificações</h2>
+        <form id="filtro-form-notificacoes">
+            <!-- Campos de filtragem para notificações -->
+            <!-- ... (mantenha esses campos) -->
+            <label for="filtro-palavras-chave">Palavras-Chave sobre Discursos:</label>
+            <input type="text" id="filtro-palavras-chave" placeholder="Digite palavras-chave">
+
+            <label for="filtro-comissoes">Comissão:</label>
+            <select id="filtro-comissoes">
+                <option value="">Todas as Comissões</option>
+                <option value="comissao1">Comissão 1</option>
+                <option value="comissao2">Comissão 2</option>
+                <!-- Adicione mais opções de comissões conforme necessário -->
+            </select>
+
+            <label for="filtro-temas">Temas:</label>
+            <select id="filtro-temas" >
+                <option value="todos_temas">Todos os temas</option>
+                <option value="agropecuaria">Agropecuária</option>
+                <option value="cidades">Cidades e transportes</option>
+                <option value="ciencia">Ciência, tecnologia e comunicações</option>
+                <option value="consumidor">Consumidor</option>
+                <option value="coronavirus">Coronavírus</option>
+                <option value="direitos-humanos">Direitos humanos</option>
+                <option value="economia">Economia</option>
+                <option value="educacao">Educação, cultura e esportes</option>
+                <option value="meio-ambiente">Meio ambiente e energia</option>
+                <option value="politica">Política e administração pública</option>
+                <option value="reforma-previdencia">Reforma da Previdência</option>
+                <option value="relacoes-exteriores">Relações exteriores</option>
+                <option value="saude">Saúde</option>
+                <option value="seguranca">Segurança</option>
+                <option value="trabalho">Trabalho, previdência e assistência</option>
+            </select>
+
+
+            <label for="filtro-subtemas">Subtemas:</label>
+            <select id="filtro-subtemas" >
+                <option value="todas os subtemas">Tos os subtemas</option>
+                <option value="agricultura_sustentavel">Agricultura sustentável</option>
+                <option value="pecuaria_producao_animal">Pecuária e produção animal</option>
+                <option value="agronegocio_exportacoes">Agronegócio e exportações</option>
+                <!-- Adicione mais opções de subtemas conforme necessário -->
+            </select>
+
+            <label for="filtro-proposicoes">Proposições:</label>
+            <select id="filtro-proposicoes" >
+                <option value="todas as proposições">Todas as proposições</option>
+                <option value="incentivos_fiscais">Aprovação de incentivos fiscais para o setor agrícola.</option>
+                <option value="regulamentacao_agrotoxicos">Regulamentação do uso de agrotóxicos.</option>
+                <option value="politicas_credito_rural">Políticas de crédito rural.</option>
+                <!-- Adicione mais opções de proposições conforme necessário -->
+            </select>
+
+            <!-- Campos de filtragem para o orador -->
+            <h3>Dados do Orador</h3>
+            <label for="filtro-deputado">Deputado:</label>
+            <select id="filtro-deputado-orador">
+                <option value="">Todos os Deputados</option>
+                <option value="Abilio Brunini">Abilio Brunini</option>
+                <option value="Acácio Favacho">Acácio Favacho</option>
+                <option value="Adail Filho">Adail Filho</option>
+                <!-- Adicione mais deputados conforme necessário -->
+            </select>
+
+            <label for="filtro-uf-orador">Unidade Federativa:</label>
+            <select id="filtro-uf-orador">
+                <option value="">Todas as UF</option>
+                <option value="AC">Acre (AC)</option>
+                <option value="AL">Alagoas (AL)</option>
+                <option value="AP">Amapá (AP)</option>
+                <option value="AM">Amazonas (AM)</option>
+                <option value="BA">Bahia (BA)</option>
+                <option value="CE">Ceará (CE)</option>
+                <option value="DF">Distrito Federal (DF)</option>
+                <option value="ES">Espírito Santo (ES)</option>
+                <option value="GO">Goiás (GO)</option>
+                <option value="MA">Maranhão (MA)</option>
+                <option value="MT">Mato Grosso (MT)</option>
+                <option value="MS">Mato Grosso do Sul (MS)</option>
+                <option value="MG">Minas Gerais (MG)</option>
+                <option value="PA">Pará (PA)</option>
+                <option value="PB">Paraíba (PB)</option>
+                <option value="PR">Paraná (PR)</option>
+                <option value="PE">Pernambuco (PE)</option>
+                <option value="PI">Piauí (PI)</option>
+                <option value="RJ">Rio de Janeiro (RJ)</option>
+                <option value="RN">Rio Grande do Norte (RN)</option>
+                <option value="RS">Rio Grande do Sul (RS)</option>
+                <option value="RO">Rondônia (RO)</option>
+                <option value="RR">Roraima (RR)</option>
+                <option value="SC">Santa Catarina (SC)</option>
+                <option value="SP">São Paulo (SP)</option>
+                <option value="SE">Sergipe (SE)</option>
+                <option value="TO">Tocantins (TO)</option>
+            </select>
+
+            <label for="filtro-partido-orador">Partido:</label>
+            <select id="filtro-partido-orador">
+                <option value="">Todos os Partidos</option>
+                <option value="MDB">MDB (Movimento Democrático Brasileiro)</option>
+                <option value="PTB">PTB (Partido Trabalhista Brasileiro)</option>
+                <option value="PDT">PDT (Partido Democrático Trabalhista)</option>
+                <option value="PT">PT (Partido dos Trabalhadores)</option>
+                <option value="PCdoB">PCdoB (Partido Comunista do Brasil)</option>
+                <option value="PSB">PSB (Partido Socialista Brasileiro)</option>
+                <option value="PSDB">PSDB (Partido da Social Democracia Brasileira)</option>
+                <option value="AGIR">AGIR</option>
+                <option value="PMN">PMN (Partido da Mobilização Nacional)</option>
+                <option value="CIDADANIA">Cidadania</option>
+                <option value="PV">PV (Partido Verde)</option>
+                <option value="AVANTE">Avante</option>
+                <option value="PP">PP (Progressistas)</option>
+                <option value="PSTU">PSTU (Partido Socialista dos Trabalhadores Unificado)</option>
+                <option value="PCB">PCB (Partido Comunista Brasileiro)</option>
+                <option value="PRTB">PRTB (Partido Renovador Trabalhista Brasileiro)</option>
+                <option value="DC">DC (Democracia Cristã)</option>
+                <option value="PCO">PCO (Partido da Causa Operária)</option>
+                <option value="PODE">PODE (Podemos)</option>
+                <option value="REPUBLICANOS">Republicanos</option>
+                <option value="PSOL">PSOL (Partido Socialismo e Liberdade)</option>
+                <option value="PL">PL (Partido Liberal)</option>
+                <option value="PSD">PSD (Partido Social Democrático)</option>
+                <option value="PATRIOTA">Patriota</option>
+                <option value="SOLIDARIEDADE">Solidariedade</option>
+                <option value="NOVO">Novo (Partido Novo)</option>
+                <option value="REDE">REDE (Rede Sustentabilidade)</option>
+                <option value="PMB">PMB (Partido da Mulher Brasileira)</option>
+                <option value="UP">UP (Unidade Popular)</option>
+                <option value="UNIAO">UNIÃO</option>
+            </select>
+            <label for="filtro-data-notificacoes">Receber Notificações Até:</label>
+            <input type="date" id="filtro-data-notificacoes">
+            <button type="button" id="salvar-filtro">Cadastrar Filtro 
+        </form>
+
+    </main>
+    <main id="filtros-cadastrados">
+        <h2>Filtros Cadastrados</h2>
+        <ul id="filtros-salvos">
+            <!-- Os filtros cadastrados serão exibidos aqui -->
+        </ul>
+    </main>
+    <footer>
+        <p>&copy; 2023 Câmara dos Deputados</p>
+    </footer>
+
+
+    <script>
+        // Função para lidar com o clique no botão "Salvar Filtro"
+        document.getElementById("salvar-filtro").addEventListener("click", function() {
+        // Coletar as informações das notificações (mantenha essa parte)
+        const palavrasChave = document.getElementById("filtro-palavras-chave").value;
+        const comissaoSelecionada = document.getElementById("filtro-comissoes").value;
+        const temasSelecionados = Array.from(document.getElementById("filtro-temas").selectedOptions).map(option => option.text);
+        const subtemasSelecionados = Array.from(document.getElementById("filtro-subtemas").selectedOptions).map(option => option.text);
+        const proposicoesSelecionadas = Array.from(document.getElementById("filtro-proposicoes").selectedOptions).map(option => option.text);
+
+        // Coletar as informações do orador
+        const deputadoSelecionado = document.getElementById("filtro-deputado-orador").value;
+        const ufSelecionada = document.getElementById("filtro-uf-orador").value;
+        const partidoSelecionado = document.getElementById("filtro-partido-orador").value;
+        const dataNotificacoes = document.getElementById("filtro-data-notificacoes").value;
+
+        // Construir uma representação do filtro selecionado como desejar
+        const filtroCadastrado = [];
+        if (deputadoSelecionado) {
+            filtroCadastrado.push(`Deputado: ${deputadoSelecionado}`);
+        }
+        if (palavrasChave) {
+            filtroCadastrado.push(`Palavras-Chave: ${palavrasChave}`);
+        }
+        // Adicione as informações do orador ao filtro
+        if (deputadoSelecionado) {
+            filtroCadastrado.push(`Deputado: ${deputadoSelecionado}`);
+        }
+        if (ufSelecionada) {
+            filtroCadastrado.push(`UF: ${ufSelecionada}`);
+        }
+        if (partidoSelecionado) {
+            filtroCadastrado.push(`Partido: ${partidoSelecionado}`);
+        }
+        if (dataNotificacoes) {
+            filtroCadastrado.push(`Receber Notificações Até: ${dataNotificacoes}`);
+        }
+
+        // Exibir o filtro cadastrado na seção "Filtros Salvos"
+        const filtrosSalvosList = document.getElementById("filtros-salvos");
+        const novoFiltroItem = document.createElement("li");
+        novoFiltroItem.textContent = filtroCadastrado.join(" | ");
+        filtrosSalvosList.appendChild(novoFiltroItem);
+
+        // Limpar os campos de filtro após salvar
+        document.getElementById("filtro-deputado-orador").value = "";
+        document.getElementById("filtro-uf-orador").value = "";
+        document.getElementById("filtro-partido-orador").value = "";
+        // Limpar os campos de filtragem de notificações (mantenha essa parte)
+        document.getElementById("filtro-palavras-chave").value = "";
+        document.getElementById("filtro-comissoes").value = "";
+        Array.from(document.getElementById("filtro-temas").selectedOptions).forEach(option => option.selected = false);
+        Array.from(document.getElementById("filtro-subtemas").selectedOptions).forEach(option => option.selected = false);
+        Array.from(document.getElementById("filtro-proposicoes").selectedOptions).forEach(option => option.selected = false);
+        document.getElementById("filtro-data-notificacoes").value = "";
+        });
+
+
+    </script>
+</body>
+</html>
